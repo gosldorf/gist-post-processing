@@ -1,7 +1,5 @@
 # gist-post-processing
 Tools for post processing GIST maps
-Steven Ramsey, Department of Chemistry Lehman College, Bronx, NY
-vpsramsey@gmail.com
 
 Here you'll find the source code for the current available GISTPP (gist post processing)
 
@@ -13,4 +11,7 @@ To run: ./gistpp -i infile {-i2 infile2} -op operation -opt options {-opt option
 For detailed instructions see tentative manual:
 150330-gistppmanual.docx
 
+Steven Ramsey, Department of Chemistry Lehman College
+
+contact: vpsramsey@gmail.com
 
