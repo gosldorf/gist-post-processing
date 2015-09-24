@@ -11,6 +11,7 @@ To run: ./gistpp -i infile {-i2 infile2} -op operation -opt options {-opt option
 For detailed instructions see tentative manual:
 150330-gistppmanual.docx
 
+
 Steven Ramsey, Department of Chemistry Lehman College
 
 contact: vpsramsey@gmail.com
