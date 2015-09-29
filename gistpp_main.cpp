@@ -7,7 +7,7 @@
 #include <time.h>
 #include <iostream>
 #include <fstream>
-#include "gistpp100.h"
+#include "gistpp.h"
 
 /*
     Created by: Steven Ramsey, PhD Candidate Biochemistry CUNY Graduate Center
