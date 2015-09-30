@@ -42,6 +42,7 @@ struct dx {
     void setBP(std::vector<double > &ha1, std::vector<double > &ha2, std::vector<double > &ha3, double D);
     void calcVdw(double vdw);
     void write_out_dx(std::string infile, int column);
+    void histogram(std::string outfile);
 
 
 };

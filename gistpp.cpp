@@ -1207,3 +1207,44 @@ void dx::calcVdw(double vdw) {
         }
     }
 }
+
+void dx::histogram(string outfile) {
+	double avg = 0;
+	double total = 0;
+	double stddev = 0;
+	double stot = 0;
+	double maxx = 0;
+	double minn = 100000;
+	int temp = 0;
+	double h = 0; //bin size
+	int numbin = 0;
+	for (int i = 0; i < totalpoints; i++) {
+		total += data[i];
+		maxx = max(maxx, data[i]);
+		minn = min(minn, data[i]);		
+	}
+	avg = total/totalpoints;
+	for (int i = 0; i < totalpoints; i++) {
+		stot += pow((data[i]-avg), 2);
+	}
+	stddev = pow(stot/(totalpoints-1), (1/3));
+	h = (3.5*stddev)/pow(totalpoints,(1/3));
+	numbin = (maxx-minn)/h;
+	vector<int> colh (numbin);
+	
+	for (int i = 0; i < totalpoints; i++) {
+		temp = (data[i]-minn)/h;
+		temp = floor(temp);
+		colh[temp]++;
+	}
+
+	ofstream output(outfile.c_str());
+	output << "Average: " << avg << " Stddev: " << stddev << " Bin Width: " << h << " Number bins: " << numbin << endl;
+
+	output << "\n\n\n\n";
+	
+	for (int i = 0; i < numbin; i++) {
+		output << minn+(i*h) << "\t\t" << colh[i];
+	}
+	
+}
