@@ -43,6 +43,7 @@ struct dx {
     void calcVdw(double vdw);
     void write_out_dx(std::string infile, int column);
     void histogram(std::string outfile);
+	void printcol(std::string outfile);
 
 
 };

@@ -88,7 +88,8 @@ int main (int argc, char** argv) {
             << "\t\t -op printpdb 1 dx Y produces a pdb file containing hydrogen atoms at every voxel with the gist voxel data stored in occupancy\n"
             << "\t\t -op popstat 1 gist N prints in the command line statistics taken directly from the gist outfile\n"
             << "\t\t -op vdw 1 dx Y prints a new dx file which contains 1's in all voxels which are within the vdw sphere of the atoms\n"
-			<< "\t\t -op histo\n"
+	        << "\t\t -op histo 1 dx prints a histogram .dat file of voxel quantities. Must specify an outfile.\n"
+			<< "\t\t -op printcol 1 dx prints a dx file as a single column for spreadsheet purposes. Must specify an outfile.\n"
             << "\t\t -op makedx gist+dx 2 prints a new dx file which represents the data stored in a specified column of the gist text output\n\n";
             exit(0);
         }
@@ -143,7 +144,7 @@ int main (int argc, char** argv) {
             }
             i++;
         }
-		cout << operation << endl;
+		//cout << operation << endl;
     }
     /*
         Follows is the section in which the specified operation is determined by if statements. This could possibly be converted to an enumerator and run smoother.
@@ -161,14 +162,14 @@ int main (int argc, char** argv) {
         ONE.readDx(infile);
         ONE.makeGroups();
     }
-	else if (!strcmp(operation.c_str(), "histo")) {
+    else if (!strcmp(operation.c_str(), "histo")) {
 		//do histogram
 		if (infile.empty()) {
 			cerr <<"\nAn infile must be specified in order to evaluate a histogram\n"
 			<<"For help run gistpp -h\n\n";
 			exit(0);
 		}
-		if (outfile.empty()) {
+		if (!strcmp(outfile.c_str(), "out.dx")) {
 			cout << "\nAn outfile should be specified for histogramming, preferably .txt or .dat\n"
 			<< "By default the outfile will be histo.dat\n";
 			outfile = "histo.dat";
@@ -179,6 +180,23 @@ int main (int argc, char** argv) {
 		ONE.readDx(infile);
 		ONE.histogram(outfile);
 		
+    }
+	else if (!strcmp(operation.c_str(), "printcol")) {
+		if (infile.empty()) {
+			cerr <<"\nAn infile must be specified to print a column\n"
+			<< "For help run gistpp -h\n\n";
+			exit(0);
+		}
+		if (!strcmp(outfile.c_str(), "out.dx")) {
+			cout << "\nAn outfile should be specified for printng to, preferably .txt or .dat\n"
+			<< "By default the outfile will be print.dat\n";
+			outfile = "print.dat";
+		}
+
+		cout << "Column of: " << infile << " will be written to: " << outfile << endl;
+		dx ONE;
+		ONE.readDx(infile);
+		ONE.printcol(outfile);
 	}
     else if (!strcmp(operation.c_str(), "contour")) {
         //do contour

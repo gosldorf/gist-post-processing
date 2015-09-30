@@ -1213,38 +1213,73 @@ void dx::histogram(string outfile) {
 	double total = 0;
 	double stddev = 0;
 	double stot = 0;
-	double maxx = 0;
+	double maxx = -10000000;
 	double minn = 100000;
 	int temp = 0;
 	double h = 0; //bin size
 	int numbin = 0;
+	int adjpts = totalpoints;
 	for (int i = 0; i < totalpoints; i++) {
-		total += data[i];
-		maxx = max(maxx, data[i]);
-		minn = min(minn, data[i]);		
+		if (data[i] == 0) {
+			adjpts--;			
+			continue;
+		}		
+		else {
+			total += data[i];
+			maxx = max(maxx, data[i]);
+			minn = min(minn, data[i]);
+		}		
 	}
 	avg = total/totalpoints;
+	cout << "totalpoints: " << totalpoints << endl;
+	cout << "made average and min/max\n";
+	cout << "avg: " << avg <<endl;
+	cout << "min: " << minn << endl;
+	cout << "max: " << maxx << endl;
 	for (int i = 0; i < totalpoints; i++) {
-		stot += pow((data[i]-avg), 2);
+		if (data[i] == 0) {
+			continue;
+		}
+		else {
+			stot += pow((data[i]-avg), 2);
+		}
 	}
-	stddev = pow(stot/(totalpoints-1), (1/3));
-	h = (3.5*stddev)/pow(totalpoints,(1/3));
+	stddev = sqrt(stot/(totalpoints-1));
+	cout << "made stddev: " << stddev << endl;
+	h = (3.5*stddev)/(pow(totalpoints,1./3.));
+	cout << "made binsize: " << h << endl;
 	numbin = (maxx-minn)/h;
-	vector<int> colh (numbin);
-	
+	cout << "made binnum: " << numbin <<endl;
+	vector<int> colh;
+	colh.resize(numbin);
+		
+
 	for (int i = 0; i < totalpoints; i++) {
-		temp = (data[i]-minn)/h;
-		temp = floor(temp);
-		colh[temp]++;
+		if (data[i] == 0) {
+			continue;
+		}
+		else {
+			temp = (data[i]-minn)/h;
+			temp = floor(temp);
+			//cout << temp << endl;
+			colh[temp]++;
+		}
 	}
 
 	ofstream output(outfile.c_str());
-	output << "Average: " << avg << " Stddev: " << stddev << " Bin Width: " << h << " Number bins: " << numbin << endl;
+	output << "#Average: " << avg << " Stddev: " << stddev << " Bin Width: " << h << " Number bins: " << numbin << endl;
 
 	output << "\n\n\n\n";
 	
 	for (int i = 0; i < numbin; i++) {
-		output << minn+(i*h) << "\t\t" << colh[i];
+		output << minn+(i*h) << "\t\t" << colh[i] << endl;
 	}
 	
+}
+
+void dx::printcol(string outfile) {
+	ofstream output(outfile.c_str());	
+	for (int i = 0; i < totalpoints; i++) {
+		output << data[i] << endl;
+	}
 }
