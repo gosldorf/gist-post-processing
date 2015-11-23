@@ -563,7 +563,7 @@ dx dx::clearByTwo(dx E, double cutoff1, double  cutoff2, char flag1, char flag2)
                         TWO.data.push_back(0);
                     }
                     else {
-                        TWO.data.push_back(data[i]);
+                        TWO.data.push_back(1);
                     }
                 }
             }
@@ -578,7 +578,7 @@ dx dx::clearByTwo(dx E, double cutoff1, double  cutoff2, char flag1, char flag2)
                         TWO.data.push_back(0);
                     }
                     else {
-                        TWO.data.push_back(data[i]);
+                        TWO.data.push_back(1);
                     }
                 }
             }
