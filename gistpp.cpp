@@ -1008,7 +1008,7 @@ void dx::printPdb(string outfile) {
                 vals[1] = j*delta[1] + origin[1];
                 vals[2] = k*delta[2] + origin[2];
                 fprintf (pFile, "%-6s%5i %-4s %3s %1s%4i    %8.3f%8.3f%8.3f%6.2f%6.2f\n", name.c_str(), pos, atom.c_str(), resname.c_str(), chainid.c_str(), resseq, vals[0], vals[1], vals[2], data[pos], T);
-                pos++;
+                //pos++;
             }
         }
     }
@@ -1130,14 +1130,20 @@ void dx::write_out_dx(string infile, int column) {
     int C = column; string temp; double tempx;
     ifstream input(infile.c_str());
     getline(input, temp); //skip the header line
-    getline(input, temp);
+    getline(input, temp); 
     //there are 22 slots per line
+	//false this approach is shyte. What happens is any time someone uses a different version or a change occurs this code eats dirt.
+	// Instead we will implement a vector, yeah?
 
     cout << temp << endl;
 
-    double row[22];
+    //double row[22];
+    //vector <double > row;
     vector <double > vals;
+    
+	//double tempx;
 
+    /*
     while (!input.eof()) {
         for (int i = 0; i < 22; i++) {
             input >> tempx;
@@ -1152,7 +1158,23 @@ void dx::write_out_dx(string infile, int column) {
         data[i] = vals[i]; //reset original dx file stored values with the values from the column read in
         //cout << vals[i] << endl;
     }
-
+    */
+	//cout << "Starting to read the input file: " << infile << endl;
+	while (!input.eof()) {
+		input >> tempx;
+		vals.push_back(tempx);
+	}
+	//cout << "Finished reading the input file: " << infile << endl;
+	int rowcount = vals.size()/totalpoints;
+	cout << "rowcount: " << rowcount << endl;
+	int currrow = -1;	
+	int j = 0;
+	for (int i = 0; i < vals.size(); i++) {
+		if (i%rowcount == C) {
+			data[j] = vals[i];
+			j++;
+		}
+	}
 }
 
 

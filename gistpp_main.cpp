@@ -33,10 +33,10 @@ int main (int argc, char** argv) {
         << "bracketed commands are either optional or required dependant on the operation to be performed\n\n"
         << "infile is a file containing the main data to be read, this can either be the gist output file or a dx file\n"
         << "operation is the required specification of a desired operation to be performed on the infile\n\n"
-        << "To see a full list of operations run: ./gistpp -operation\n\n"
         << "[infile 2] is a second infile, necessary when using an operation which requires two input files (ex: add or clear2)\n"
-        << "[outfile] is the desired name of an outfile if the operation performed produces an outfile. Default: out.dx\n"
+        << "[outfile] is the desired name of an outfile if the operation performed produces an outfile. Default: out.dx\n"	
         << "[options] are various option flags which apply to specific operations\n\n"
+	<< "To see a full list of operations run: ./gistpp -operations\n\n"
         << "To see a full list of options and the operations they apply to run: ./gistpp -options\n\n";
         exit(0);
     }
@@ -47,23 +47,23 @@ int main (int argc, char** argv) {
             Check if user has requested help, this information will also be printed if no arguments used
         */
         if (!strcmp(argv[1], "-h")) {
-            cerr << "\nUSAGE:\n\n"
-            << "./gistpp -i infile -op operation [-i2 infile 2][-o outfile][-opt options]\n"
-            << "where:\n\n"
-            << "bracketed commands are either optional or required dependant on the operation to be performed\n\n"
-            << "infile is a file containing the main data to be read, this can either be the gist output file or a dx file\n"
-            << "operation is the required specification of a desired operation to be performed on the infile\n\n"
-            << "To see a full list of operations run: ./gistpp -operation\n\n"
-            << "[infile 2] is a second infile, necessary when using an operation which requires two input files (ex: add or clear2)\n"
-            << "[outfile] is the desired name of an outfile if the operation performed produces an outfile. Default: out.dx\n"
-            << "[-options] are various option flags which apply to specific operations\n\n"
-            << "To see a full list of options and the operations they apply to run: ./gistpp -options\n\n";
-            exit(0);
+        	cerr << "\nUSAGE:\n\n"
+        	<< "./gistpp -i infile -op operation [-i2 infile 2][-o outfile][-opt options]\n\n"
+        	<< "where:\n\n"
+        	<< "bracketed commands are either optional or required dependant on the operation to be performed\n\n"
+        	<< "infile is a file containing the main data to be read, this can either be the gist output file or a dx file\n"
+        	<< "operation is the required specification of a desired operation to be performed on the infile\n\n"
+        	<< "[infile 2] is a second infile, necessary when using an operation which requires two input files (ex: add or clear2)\n"
+        	<< "[outfile] is the desired name of an outfile if the operation performed produces an outfile. Default: out.dx\n"		
+        	<< "[options] are various option flags which apply to specific operations\n\n"
+		<< "To see a full list of operations run: ./gistpp -operations\n\n"
+        	<< "To see a full list of options and the operations they apply to run: ./gistpp -options\n\n";
+        	exit(0);
         }
         /*
             Check if user has requested information regarding the available operations
         */
-        else if (!strcmp(argv[1], "-operation")) {
+        else if (!strcmp(argv[1], "-operations")) {
             cout << "\nFollowing is a list of the available operations provided in this code\n\n"
             << "\tThe format is as follows:\n\n"
             << "\t\t-op [operation][# infile][type infile][outfile][synopsis]\n\n"
@@ -73,9 +73,9 @@ int main (int argc, char** argv) {
             << "\toutfile is whether or not the code requires a specified outfile (Y/N)\n"
             << "\tsynopsis is a brief explanation of the operation\n\n"
             << "\t\t -op group 1 dx N produces files which contain spatially grouped voxels with similar qualities\n"
-            << "\t\t -op contour 2 dx Y produces an outfile which contains the values of the first provided the same voxel meets a criteria in the second file\n"
+            //<< "\t\t -op contour 2 dx Y produces an outfile which contains the values of the first provided the same voxel meets a criteria in the second file\n"
             << "\t\t -op filter1 1 dx Y produces an outfile which contains all 1's and 0's, 0 if the voxel does not fit a desired criteria in infile (ex: high energy), 1 if the voxel does \n"
-            << "\t\t -op filter2 2 dx Y same as clear1 only requires the voxel to fit criteria in 2 dx files rather than simply 1 (ex: high energy and high g(O))\n"
+            //<< "\t\t -op filter2 2 dx Y same as clear1 only requires the voxel to fit criteria in 2 dx files rather than simply 1 (ex: high energy and high g(O))\n"
             << "\t\t -op sasa 1 dx Y produces a dx file which contains 1's in each voxel which defines the solvent accessible surface area\n"
             << "\t\t -op sum 1 dx N prints in the command line the sum of all voxel quantities and the average voxel quanitity for the values found in the dx file provided\n"
             << "\t\t -op add 2 dx Y produces a dx file in which each voxel is the sum of the 2 corresponding voxels in each input file\n"
@@ -86,10 +86,10 @@ int main (int argc, char** argv) {
             << "\t\t -op multconst 1 dx Y produces a dx file in which each voxel is changed by the multiplication of a specified constant\n"
             << "\t\t -op defbp 2 dx+pdb Y produces a dx file in which each voxel is flagged as 1 when within a set distance of any ligand.pdb heavy atoms\n"
             << "\t\t -op printpdb 1 dx Y produces a pdb file containing hydrogen atoms at every voxel with the gist voxel data stored in occupancy\n"
-            << "\t\t -op popstat 1 gist N prints in the command line statistics taken directly from the gist outfile\n"
-            << "\t\t -op vdw 1 dx Y prints a new dx file which contains 1's in all voxels which are within the vdw sphere of the atoms\n"
-	        << "\t\t -op histo 1 dx prints a histogram .dat file of voxel quantities. Must specify an outfile.\n"
-			<< "\t\t -op printcol 1 dx prints a dx file as a single column for spreadsheet purposes. Must specify an outfile.\n"
+            //<< "\t\t -op popstat 1 gist N prints in the command line statistics taken directly from the gist outfile\n"
+            //<< "\t\t -op vdw 1 dx Y prints a new dx file which contains 1's in all voxels which are within the vdw sphere of the atoms\n"
+	    //<< "\t\t -op histo 1 dx prints a histogram .dat file of voxel quantities. Must specify an outfile.\n"
+	    //<< "\t\t -op printcol 1 dx prints a dx file as a single column for spreadsheet purposes. Must specify an outfile.\n"
             << "\t\t -op makedx gist+dx 2 prints a new dx file which represents the data stored in a specified column of the gist text output\n\n";
             exit(0);
         }
@@ -97,7 +97,8 @@ int main (int argc, char** argv) {
             Check to see if the user has requested information about operation options
         */
         else if (!strcmp(argv[1], "-options")) {
-            cout << "\nFollowing is a list of the available options and which operations they correspond to\n\n"
+            /*
+	    cout << "\nFollowing is a list of the available options and which operations they correspond to\n\n"
             << "\tThe format is as follows:\n\n"
             << "\t\t -opt [option][##][operation][synopsis]\n\n"
             << "\twhere:\n\toption is the command flag\n"
@@ -112,6 +113,25 @@ int main (int argc, char** argv) {
             << "\t\t -opt lt2 [filter2 contour] this option specifies we are interested in values less than cutoff2 in infile2\n"
             << "\t\t -opt const ## [addconst multconst vdw makedx] this option specifies the constant to add or multiply by in the provided function\n\n";
             exit(0);
+	    */
+		/*
+			Rewritten to reflect the new operations help output, will not include information regarding commented out text of 
+		*/
+		cout << "\nFollowing is a list of the available options and which operations they correspond to\n\n"
+            	<< "\tThe format is as follows:\n\n"
+            	<< "\t\t -opt [option][##][operation][synopsis]\n\n"
+            	<< "\twhere:\n\toption is the command flag\n"
+            	<< "\t## indicates a numerical value must be added after the option\n"
+            	<< "\toperation is the list of operations this option is required for\n"
+            	<< "\tsynopsis is a brief summary of the options effect\n\n"
+            	<< "\t\t -opt cutoff1 ## [filter1] this option specifies the threshold value which is desired to be applied to infile in filter1\n"
+            	//<< "\t\t -opt cutoff2 ## [filter2 contour] this option specifies the cutoff value which is desired to be applied to infile2\n"
+            	<< "\t\t -opt gt1 [filter1] this option specifies we are interested in values greater than cutoff1 in infile\n"
+            	<< "\t\t -opt lt1 [filter1] this option specifies we are interested in values less than cutoff1 in infile\n"
+            	//<< "\t\t -opt gt2 [filter2 contour] this option specifies we are interested in values greater than cutoff2 in infile2\n"
+            	//<< "\t\t -opt lt2 [filter2 contour] this option specifies we are interested in values less than cutoff2 in infile2\n"
+            	<< "\t\t -opt const ## [addconst multconst makedx defbp] this option specifies the constant utilize in the provided function\n\n";
+            	exit(0);
         }
         else {
             cerr << "\nCode requires more arguments\n"
@@ -483,7 +503,7 @@ int main (int argc, char** argv) {
     }
     else if (!strcmp(operation.c_str(), "defbp")) {
         //do defbp
-        //distance to be specified by cutoff1
+        //distance to be specified by const
         bool test1 = false; //cutoff1
         if (infile.empty() || infile2.empty()) {
             cerr << "\nTwo infiles need to be specified for defbp, a dx and a ligand file\n"
@@ -496,16 +516,16 @@ int main (int argc, char** argv) {
             exit (0);
         }
         for (int j = 0; j < options.size(); j++) {
-            if (!strcmp(options[j].c_str(), "cutoff1")) {test1 = true; break;}
+            if (!strcmp(options[j].c_str(), "const")) {test1 = true; break;}
         }
         if (test1 == false) {
-            cerr << "\nNeed to specify desired distance around heavy atoms with cutoff1 option\n"
+            cerr << "\nNeed to specify desired distance around heavy atoms with const option\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
 
 
-        cout << "Binding pocket to be defined using heavy atoms in: " << infile2 << " will be applied to: " << infile << " with a cutoff distance of: " << val1 << " and written to: " << outfile << endl;
+        cout << "Binding pocket to be defined using heavy atoms in: " << infile2 << " will be applied to: " << infile << " with a distance of: " << val1 << " and written to: " << outfile << endl;
         cout << "The ligand structure file is expected in i2 NOT in i!!\n";
         lig L;
         L.readLF(infile2);
