@@ -26,12 +26,8 @@ void lig::readLF(string ligfile) {
     */
     string temp; //storage
     double tempx; //storage
-    ifstream input; 
-    input.exceptions ( ifstream::failbit | ifstream::badbit );
-    try {
-	input.open(ligfile.c_str());
-    }
-    catch (ifstream::failure e) {
+    ifstream input(ligfile.c_str());
+    if (!input.is_open()) {
 	cerr << "Could not open file " << ligfile << " please check it is available.\n";
         exit(0);
     }
@@ -116,12 +112,8 @@ void dx::readDx(string infile) {
     double tempx;
     string temp[44];
     int head_pos = 0;
-    ifstream input;
-    input.exceptions ( ifstream::failbit | ifstream::badbit );
-    try {
-	input.open(infile.c_str());
-    }
-    catch (ifstream::failure e) {
+    ifstream input(infile.c_str());
+    if (!input.is_open()) {
     	cerr << "Could not find file: " << infile << " please ensure it is available.\n";
 	exit(0);
     }
@@ -1103,6 +1095,10 @@ pop::pop() {
 
 void pop::calcpop(string gistfile) {
     ifstream input(gistfile.c_str());
+    if (!input.is_open()) {
+	cerr << "Could not find file: " << gistfile << " please check that it is available.\n";
+	exit(0);
+    }
     getline(input, temp); getline(input, temp);
     while (!input.eof()) {
         input >> tempx >> tempx >> tempx >> tempx >> tempx;
@@ -1144,12 +1140,8 @@ void dx::write_out_dx(string infile, int column) {
     */
 
     int C = column; string temp; double tempx;
-    ifstream input;
-    input.exceptions ( ifstream::failbit | ifstream::badbit );
-    try {
-	input.open(infile.c_str());
-    }
-    catch (ifstream::failure e) {
+    ifstream input(infile.c_str());
+    if (!input.is_open()) {
    	cerr << "Could not open file: " << infile << " please ensure it is available.\n";
 	exit(0);
     }
