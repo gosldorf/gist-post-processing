@@ -26,7 +26,15 @@ void lig::readLF(string ligfile) {
     */
     string temp; //storage
     double tempx; //storage
-    ifstream input(ligfile.c_str());
+    ifstream input; 
+    input.exceptions ( ifstream::failbit | ifstream::badbit );
+    try {
+	input.open(ligfile.c_str());
+    }
+    catch (ifstream::failure e) {
+	cerr << "Could not open file " << ligfile << " please check it is available.\n";
+        exit(0);
+    }
     //ofstream output("ligandcoord.txt"); //test file to be sure ligand is read properly
     while (!input.eof()) {
         getline(input, temp);
@@ -108,7 +116,15 @@ void dx::readDx(string infile) {
     double tempx;
     string temp[44];
     int head_pos = 0;
-    ifstream input(infile.c_str());
+    ifstream input;
+    input.exceptions ( ifstream::failbit | ifstream::badbit );
+    try {
+	input.open(infile.c_str());
+    }
+    catch (ifstream::failure e) {
+    	cerr << "Could not find file: " << infile << " please ensure it is available.\n";
+	exit(0);
+    }
     while (!input.eof()) {
         if (head_pos < 44) {
             input >> temp1;
@@ -1128,7 +1144,15 @@ void dx::write_out_dx(string infile, int column) {
     */
 
     int C = column; string temp; double tempx;
-    ifstream input(infile.c_str());
+    ifstream input;
+    input.exceptions ( ifstream::failbit | ifstream::badbit );
+    try {
+	input.open(infile.c_str());
+    }
+    catch (ifstream::failure e) {
+   	cerr << "Could not open file: " << infile << " please ensure it is available.\n";
+	exit(0);
+    }
     getline(input, temp); //skip the header line
     getline(input, temp); 
     //there are 22 slots per line
