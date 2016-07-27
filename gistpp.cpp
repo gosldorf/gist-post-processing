@@ -35,10 +35,11 @@ void lig::readLF(string ligfile) {
     while (!input.eof()) {
         getline(input, temp);
         if (!temp.empty()){
-            if (!strcmp(temp.substr(0,1).c_str(), "T")) {continue;} //skip TER lines
+            if (!strcmp(temp.substr(0,1).c_str(), "T")) {continue;} //skip TER and TITLE lines
             else if (!strcmp(temp.substr(0,1).c_str(), "R")) {continue;} //skip REMARK lines
             else if (!strcmp(temp.substr(0,1).c_str(), "E")) {continue;} //skip END lines
             else if (!strcmp(temp.substr(0,1).c_str(), "C")) {continue;} //skip CRYSTAL lines
+	    else if (!strcmp(temp.substr(0,1).c_str(), "M")) {continue;} //skip MODEL lines
             else {
                 //checked for TER, END, CRYSTAL, and REMARK flags
                 if (!strcmp(temp.substr(13, 1).c_str(), "H") || !strcmp(temp.substr(13,1).c_str(), "h")) {continue;} //do not both with hydrogen data
