@@ -112,6 +112,8 @@ void dx::readDx(string infile) {
     double tempx;
     string temp[44];
     int head_pos = 0;
+    int data_count = 0;
+    bool check = true;
     ifstream input(infile.c_str());
     if (!input.is_open()) {
     	cerr << "Could not find file: " << infile << " please ensure it is available.\n";
@@ -129,17 +131,29 @@ void dx::readDx(string infile) {
             */
         }
         else {
+            if (check) {
+            	totalpoints = atoi(temp[41].c_str());
+                check = false;
+            }
+            if (data_count == totalpoints) {
+   		break;
+            }
             input >> tempx;
+	    //if (temp1 == "object") {
+	    //break;
+	    //}
             data.push_back(tempx);
+            data_count++;
+	    
         }
     }
     //Set the variables based on their position in the header chunk of a dx file
     count[0] = atoi(temp[5].c_str()); count[1] = atoi(temp[6].c_str()); count[2] = atoi(temp[7].c_str());
     origin[0] = atof(temp[9].c_str()); origin[1] = atof(temp[10].c_str()); origin[2] = atof(temp[11].c_str());
     delta[0] = atof(temp[13].c_str()); delta[1] = atof(temp[18].c_str()); delta[2] = atof(temp[23].c_str());
-    totalpoints = atoi(temp[41].c_str());
+    //totalpoints = atoi(temp[41].c_str());
 
-    data.pop_back();
+    //data.pop_back();
 
     if (totalpoints != data.size()) {
         cerr << "\nERROR!:\n\n"

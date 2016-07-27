@@ -9,7 +9,7 @@ g++ -o gistpp gistpp.cpp gistpp_main.cpp
 To run: ./gistpp -i infile {-i2 infile2} -op operation -opt options {-opt options} [-o outfile]
 
 For detailed instructions see tentative manual:
-150330-gistppmanual.docx
+160107-gistppmanual.docx
 
 
 Steven Ramsey, Department of Chemistry Lehman College
