@@ -375,7 +375,7 @@ int main (int argc, char** argv) {
         ONE.readDx(infile);
         double sum = ONE.sum();
         double avg = ONE.avg();
-        cout << "sum of dx file: " << sum << endl;
+        //cout << "sum of dx file: " << sum << endl;
 	cout << "sum of: " << infile << " is: " << sum << endl; 
         cout << "avg of: " << infile << " is: " << avg << endl;
     }
