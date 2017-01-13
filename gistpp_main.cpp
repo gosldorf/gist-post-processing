@@ -370,13 +370,14 @@ int main (int argc, char** argv) {
             exit(0);
         }
 
-        cout << "The sum of all voxels in: " << infile << " to be calculated\n";
+        //cout << "The sum of all voxels in: " << infile << " to be calculated\n";
         dx ONE;
         ONE.readDx(infile);
         double sum = ONE.sum();
         double avg = ONE.avg();
-        cout << "sum of dx file: " << sum << endl;
-        cout << "avg of dx file: " << avg << endl;
+        //cout << "sum of dx file: " << sum << endl;
+	cout << "sum of: " << infile << " is: " << sum << endl; 
+        cout << "avg of: " << infile << " is: " << avg << endl;
     }
     else if (!strcmp(operation.c_str(), "add")) {
         //do add
