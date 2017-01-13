@@ -534,6 +534,39 @@ int main (int argc, char** argv) {
         ONE.setBP(L.hax, L.hay, L.haz, val1);
         ONE.writeDx(outfile);
     }
+    else if (!strcmp(operation.c_str(), "heavi")) {
+        //do defbp
+        //distance to be specified by const
+        bool test1 = false; //cutoff1
+        if (infile.empty() || infile2.empty()) {
+            cerr << "\nTwo infiles need to be specified for defbp, a dx and a ligand file\n"
+            << "For help run ./gistpp -h\n\n";
+            exit (0);
+        }
+        if (options.size() == 0) {
+            cerr << "\nNeed to specify desired distance around heavy atoms with cutoff1 option\n"
+            << "For help run ./gistpp -h\n\n";
+            exit (0);
+        }
+        for (int j = 0; j < options.size(); j++) {
+            if (!strcmp(options[j].c_str(), "const")) {test1 = true; break;}
+        }
+        if (test1 == false) {
+            cerr << "\nNeed to specify desired distance around heavy atoms with const option\n"
+            << "For help run ./gistpp -h\n\n";
+            exit (0);
+        }
+
+
+        cout << "Heavi pocket to be defined using heavy atoms in: " << infile2 << " will be applied to: " << infile << " with a distance of: " << val1 << " and written to: " << outfile << endl;
+        cout << "The ligand structure file is expected in i2 NOT in i!!\n";
+        lig L;
+        L.readLF(infile2);
+        dx ONE;
+        ONE.readDx(infile);
+        ONE.setHeavi(L.hax, L.hay, L.haz, val1);
+        ONE.writeDx(outfile);
+    }
     else if (!strcmp(operation.c_str(), "popstat")) {
         //do pop
         if (infile.empty()) {
@@ -621,6 +654,19 @@ int main (int argc, char** argv) {
         dx ONE;
         ONE.readDx(infile);
         ONE.calcVdw(val1);
+        ONE.writeDx(outfile);
+    }
+    else if (!strcmp(operation.c_str(), "cat")) {
+        if (infile.empty() || infile2.empty()) {
+            cerr << "\nThe function cat attempts to combine two .dx outputs, therefore input files must be declared with -i and -i2\n"
+                    << "For help run ./gistpp -h\n\n";
+            exit(0);
+        }
+        dx ONE;
+        ONE.readDx(infile);
+        dx TWO;
+        TWO.readDx(infile2);
+        ONE.cat(TWO);
         ONE.writeDx(outfile);
     }
     else {

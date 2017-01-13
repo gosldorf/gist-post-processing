@@ -40,10 +40,12 @@ struct dx {
     void div(dx G);
     double avg();
     void setBP(std::vector<double > &ha1, std::vector<double > &ha2, std::vector<double > &ha3, double D);
+    void setHeavi(std::vector<double > &ha1, std::vector<double > &ha2, std::vector<double > &ha3, double D);
     void calcVdw(double vdw);
     void write_out_dx(std::string infile, int column);
     void histogram(std::string outfile);
-	void printcol(std::string outfile);
+    void printcol(std::string outfile);
+    dx cat(dx N); //concatenate dx files self and N to create a new dx file.
 
 
 };

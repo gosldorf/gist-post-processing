@@ -94,6 +94,50 @@ void dx::setBP(vector<double > &ha1, vector<double > &ha2, vector<double > &ha3,
 
 }
 
+void dx::setHeavi(vector<double > &ha1, vector<double > &ha2, vector<double > &ha3, double D) {
+    /*
+        Function goes through dx file voxel by voxel and checks the voxels distance compared to each heavy atom in the ligand
+    */
+    double vals[3]; //storage for voxel x y z
+    double dd = 0; //storage for calculated distance
+    double DD = D*D; //squared distances since why do sqrt
+    int pos = 0;
+    for (int i = 0; i < count[0]; i++) {
+        for (int j = 0; j < count[1]; j++) {
+            for (int k = 0; k < count[2]; k++) {
+                data[pos] = 0;
+                pos++;
+            }
+        }
+    }
+    pos = 0;
+    double heavi = 0;
+    for (int i = 0; i < count[0]; i++) {
+        for (int j = 0; j < count[1]; j++) {
+            for (int k = 0; k < count[2]; k++) {
+                vals[0] = i*delta[0] + origin[0]; //find x value of voxel
+                vals[1] = j*delta[1] + origin[1]; //find y value of voxel
+                vals[2] = k*delta[2] + origin[2]; //find z value of voxel
+                for (int a = 0; a < ha1.size(); a++) { //check each heavy atom distance
+                    dd = pow(vals[0]-ha1[a], 2) + pow(vals[1] - ha2[a], 2) + pow(vals[2] - ha3[a], 2); //calc distance
+                    if (dd <= DD){ //&& data[pos] > 0) {
+                        //cout << "voxel in range:\n" << vals[0] << "\t" << vals[1] << "\t" << vals[2] << "\t" << ha1[a] << "\t" << ha2[a] << "\t" << ha3[a] << endl;
+                        heavi = D-sqrt(dd);
+                        heavi = heavi/D;
+                        if (heavi > data[pos]) {data[pos] = heavi;}
+                        //data[pos] = 1; break; //if within range stop checking and move on
+                        //can't move on once resetting, if an atom is closer it takes priority
+                        
+                    }
+                }
+                pos++;
+            }
+        }
+    }
+
+
+
+}
 
 
 dx::dx() {
@@ -1335,4 +1379,14 @@ void dx::printcol(string outfile) {
 	for (int i = 0; i < totalpoints; i++) {
 		output << data[i] << endl;
 	}
+}
+
+dx dx::cat(dx N) {
+	/*
+		This function will take two dx files that overlap and concatenate them into one new large dx file. This requires that both dx grids line up appropriately, we will not be handling cases where the two .dx files do not line up perfectly
+		Generally speaking the incorporated algorithm will determine what edge the two .dx files share in common, then determine the overlap, then finally create a new .dx file that will contain both data sets. Overlapping voxels should be identical, therefore they will be set from the first file only. 
+	*/
+
+	
+
 }
