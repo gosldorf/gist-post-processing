@@ -38,6 +38,8 @@ int main (int argc, char** argv) {
         << "[options] are various option flags which apply to specific operations\n\n"
 	<< "To see a full list of operations run: ./gistpp -operations\n\n"
         << "To see a full list of options and the operations they apply to run: ./gistpp -options\n\n";
+	dx Fin;
+	Fin.citation();
         exit(0);
     }
 
@@ -58,6 +60,8 @@ int main (int argc, char** argv) {
         	<< "[options] are various option flags which apply to specific operations\n\n"
 		<< "To see a full list of operations run: ./gistpp -operations\n\n"
         	<< "To see a full list of options and the operations they apply to run: ./gistpp -options\n\n";
+		dx Fin;
+		Fin.citation();
         	exit(0);
         }
         /*
@@ -91,6 +95,8 @@ int main (int argc, char** argv) {
 	    //<< "\t\t -op histo 1 dx prints a histogram .dat file of voxel quantities. Must specify an outfile.\n"
 	    //<< "\t\t -op printcol 1 dx prints a dx file as a single column for spreadsheet purposes. Must specify an outfile.\n"
             << "\t\t -op makedx gist+dx 2 prints a new dx file which represents the data stored in a specified column of the gist text output\n\n";
+	    dx Fin;
+	    Fin.citation();
             exit(0);
         }
         /*
@@ -131,6 +137,8 @@ int main (int argc, char** argv) {
             	//<< "\t\t -opt gt2 [filter2 contour] this option specifies we are interested in values greater than cutoff2 in infile2\n"
             	//<< "\t\t -opt lt2 [filter2 contour] this option specifies we are interested in values less than cutoff2 in infile2\n"
             	<< "\t\t -opt const ## [addconst multconst makedx defbp] this option specifies the constant utilize in the provided function\n\n";
+		dx Fin;
+		Fin.citation();
             	exit(0);
         }
         else {
@@ -675,6 +683,4 @@ int main (int argc, char** argv) {
         << "For help run ./gistpp -h\n\n";
         exit (0);
     }
-    dx FIN;
-    FIN.citation();
 }
