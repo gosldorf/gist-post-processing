@@ -1390,3 +1390,15 @@ dx dx::cat(dx N) {
 	
 
 }
+
+void dx::citation() {
+	cout << "***********************************************************************************************************************************" << endl;
+	cout << "***********************************************************************************************************************************" << endl;
+	cout << "If data created through the use of GISTPP is used in a publication please cite the following source: " << endl;
+	cout << " Ramsey, S., Nguyen, C., Salomon‐Ferrer, R., Walker, R. C., Gilson, M. K., & " << endl;
+	cout << " Kurtzman, T. (2016). Solvation thermodynamic mapping of molecular " << endl;
+	cout << " surfaces in AmberTools: GIST. Journal of computational chemistry, 37(21), " << endl;
+	cout << " 2029-2037. " << endl;	
+	cout << "***********************************************************************************************************************************" << endl;
+	cout << "***********************************************************************************************************************************" << endl;	
+}

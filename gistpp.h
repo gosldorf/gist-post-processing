@@ -46,7 +46,7 @@ struct dx {
     void histogram(std::string outfile);
     void printcol(std::string outfile);
     dx cat(dx N); //concatenate dx files self and N to create a new dx file.
-
+    void citation();
 
 };
 

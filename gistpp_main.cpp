@@ -675,4 +675,6 @@ int main (int argc, char** argv) {
         << "For help run ./gistpp -h\n\n";
         exit (0);
     }
+    dx FIN;
+    FIN.citation();
 }
