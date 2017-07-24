@@ -142,7 +142,7 @@ int main (int argc, char** argv) {
             	exit(0);
         }
         else {
-            cerr << "\nCode requires more arguments\n"
+            cerr << "\nERROR: Code requires more arguments\n"
             << "For help run ./gistpp -h\n\n";
             exit(0);
         }
@@ -180,7 +180,7 @@ int main (int argc, char** argv) {
     if (!strcmp(operation.c_str(), "group")) {
         //do group
         if (infile.empty()) {
-            cerr << "\nAn infile must be specified in order to group voxels\n"
+            cerr << "\nERROR: An infile must be specified in order to group voxels\n"
             << "For help run ./gistpp -h\n\n";
             exit(0);
         }
@@ -193,12 +193,12 @@ int main (int argc, char** argv) {
     else if (!strcmp(operation.c_str(), "histo")) {
 		//do histogram
 		if (infile.empty()) {
-			cerr <<"\nAn infile must be specified in order to evaluate a histogram\n"
+			cerr <<"\nERROR: An infile must be specified in order to evaluate a histogram\n"
 			<<"For help run gistpp -h\n\n";
 			exit(0);
 		}
 		if (!strcmp(outfile.c_str(), "out.dx")) {
-			cout << "\nAn outfile should be specified for histogramming, preferably .txt or .dat\n"
+			cout << "\nWARNING: An outfile should be specified for histogramming, preferably .txt or .dat\n"
 			<< "By default the outfile will be histo.dat\n";
 			outfile = "histo.dat";
 		}
@@ -211,12 +211,12 @@ int main (int argc, char** argv) {
     }
 	else if (!strcmp(operation.c_str(), "printcol")) {
 		if (infile.empty()) {
-			cerr <<"\nAn infile must be specified to print a column\n"
+			cerr <<"\nERROR: An infile must be specified to print a column\n"
 			<< "For help run gistpp -h\n\n";
 			exit(0);
 		}
 		if (!strcmp(outfile.c_str(), "out.dx")) {
-			cout << "\nAn outfile should be specified for printng to, preferably .txt or .dat\n"
+			cout << "\nWARNING: An outfile should be specified for printng to, preferably .txt or .dat\n"
 			<< "By default the outfile will be print.dat\n";
 			outfile = "print.dat";
 		}
@@ -233,17 +233,17 @@ int main (int argc, char** argv) {
         //double c2 = 0.0; //storage for cutoff value cutoff2
         char flg; //storage for gt or lt flag
         if (infile.empty()) {
-            cerr << "\nAn infile must be specified in order to run contour\n"
+            cerr << "\nERROR: An infile must be specified in order to run contour\n"
             << "For help run ./gistpp -h\n\n";
             exit(0);
         }
         if (infile2.empty()) {
-            cerr << "\nAn infile 2 must be specified in order to run contour\n"
+            cerr << "\nERROR: An infile 2 must be specified in order to run contour\n"
             << "For help run ./gistpp -h\n\n";
             exit(0);
         }
         if (options.size() == 0) {
-            cerr << "\nMust specify cutoff2 and gt2/lt2 for contour\n"
+            cerr << "\nERROR: Must specify cutoff2 and gt2/lt2 for contour\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -258,7 +258,7 @@ int main (int argc, char** argv) {
             if (!strcmp(options[j].c_str(), "lt2")) {flg = 'l';}
         }
         if (test1 != true && test2 != true) {
-            cerr << "\nMust specify cutoff2 and gt2/lt2 for contour\n"
+            cerr << "\nERROR: Must specify cutoff2 and gt2/lt2 for contour\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -278,12 +278,12 @@ int main (int argc, char** argv) {
         char flg; //storage for gt1 or lt1
 
         if (infile.empty()) {
-            cerr << "\nAn infile must be specified in order to run filter1\n"
+            cerr << "\nERROR: An infile must be specified in order to run filter1\n"
             << "For help run ./gistpp -h\n\n";
             exit(0);
         }
         if (options.size() == 0) {
-            cerr << "\nMust specify cutoff1 and gt1/lt1 for filter1\n"
+            cerr << "\nERROR: Must specify cutoff1 and gt1/lt1 for filter1\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -298,7 +298,7 @@ int main (int argc, char** argv) {
             if (!strcmp(options[j].c_str(), "lt1")) {flg = 'l';}
         }
         if (test1 != true && test2 != true) {
-            cerr << "\nMust specify cutoff1 and gt1/lt1 for filter1\n"
+            cerr << "\nERROR: Must specify cutoff1 and gt1/lt1 for filter1\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -319,12 +319,12 @@ int main (int argc, char** argv) {
         char flg2; //storage for gt2/lt2
 
         if (infile.empty() || infile2.empty()) {
-            cerr << "\nTwo infiles need to be specified for filter2\n"
+            cerr << "\nERROR: Two infiles need to be specified for filter2\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
         if (options.size() == 0) {
-            cerr << "\nMust specify cutoff1, cutoff2, gt1/lt1, gt2/lt2 to run filter2\n"
+            cerr << "\nERROR: Must specify cutoff1, cutoff2, gt1/lt1, gt2/lt2 to run filter2\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -343,7 +343,7 @@ int main (int argc, char** argv) {
             if (!strcmp(options[j].c_str(), "lt2")) {flg2 = 'l';}
         }
         if (test1 != true && test2 != true && test3 != true && test4 != true) {
-            cerr << "\nMust specify cutoff1, cutoff2, gt1/lt1, gt2/lt2 to run filter2\n"
+            cerr << "\nERROR: Must specify cutoff1, cutoff2, gt1/lt1, gt2/lt2 to run filter2\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -358,7 +358,7 @@ int main (int argc, char** argv) {
     else if (!strcmp(operation.c_str(), "sasa")) {
         //do sasa
         if (infile.empty()) {
-            cerr << "\nAn infile must be specified in order to run sasa\n"
+            cerr << "\nERROR: An infile must be specified (gist-gO.dx) in order to run sasa\n"
             << "For help run ./gistpp -h\n\n";
             exit(0);
         }
@@ -373,7 +373,7 @@ int main (int argc, char** argv) {
     else if (!strcmp(operation.c_str(), "sum")) {
         //do sum
         if (infile.empty()) {
-            cerr << "\nAn infile must be specified in order to run sum\n"
+            cerr << "\nERROR: An infile must be specified in order to run sum\n"
             << "For help run ./gistpp -h\n\n";
             exit(0);
         }
@@ -390,7 +390,7 @@ int main (int argc, char** argv) {
     else if (!strcmp(operation.c_str(), "add")) {
         //do add
         if (infile.empty() || infile2.empty()) {
-            cerr << "\nTwo infiles need to be specified for add\n"
+            cerr << "\nERROR: Two infiles need to be specified for add\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -406,7 +406,7 @@ int main (int argc, char** argv) {
     else if (!strcmp(operation.c_str(), "sub")) {
         //do sub
         if (infile.empty() || infile2.empty()) {
-            cerr << "\nTwo infiles need to be specified for sub\n"
+            cerr << "\nERROR: Two infiles need to be specified for sub\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -422,7 +422,7 @@ int main (int argc, char** argv) {
     else if (!strcmp(operation.c_str(), "div")) {
         //do div
         if (infile.empty() || infile2.empty()) {
-            cerr << "\nTwo infiles need to be specified for div\n"
+            cerr << "\nERROR: Two infiles need to be specified for div\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -438,7 +438,7 @@ int main (int argc, char** argv) {
     else if (!strcmp(operation.c_str(), "mult")) {
         //do mult
         if (infile.empty() || infile2.empty()) {
-            cerr << "\nTwo infiles need to be specified for mult\n"
+            cerr << "\nERROR: Two infiles need to be specified for mult\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -456,12 +456,12 @@ int main (int argc, char** argv) {
         bool test1 = false; //const
 
         if (infile.empty()) {
-            cerr << "\nAn infile needs to be specified for addconst\n"
+            cerr << "\nERROR: An infile needs to be specified for addconst\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
         if (options.size() == 0) {
-            cerr << "\nNeed to specify constant to add by:\n\n"
+            cerr << "\nERROR: Need to specify constant to add by:\n\n"
             << "-opt const ##\n\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
@@ -470,7 +470,7 @@ int main (int argc, char** argv) {
             if (!strcmp(options[j].c_str(), "const" )) {test1 = true; break;}
         }
         if (test1 == false) {
-            cerr << "\nNeed to specify constant to add by\n\n"
+            cerr << "\nERROR: Need to specify constant to add by\n\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -486,12 +486,12 @@ int main (int argc, char** argv) {
         bool test1 = false; //const
 
         if (infile.empty()) {
-            cerr << "\nAn infile needs to be specified for multconst\n"
+            cerr << "\nERROR: An infile needs to be specified for multconst\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
         if (options.size() == 0) {
-            cerr << "\nNeed to specify constant to mult by\n\n"
+            cerr << "\nERROR: Need to specify constant to mult by\n\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -499,7 +499,7 @@ int main (int argc, char** argv) {
             if (!strcmp(options[j].c_str(), "const" )) {test1 = true; break;}
         }
         if (test1 == false) {
-            cerr << "\nNeed to specify constant to mult by\n\n"
+            cerr << "\nERROR: Need to specify constant to mult by\n\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -515,12 +515,22 @@ int main (int argc, char** argv) {
         //distance to be specified by const
         bool test1 = false; //cutoff1
         if (infile.empty() || infile2.empty()) {
-            cerr << "\nTwo infiles need to be specified for defbp, a dx and a ligand file\n"
+            cerr << "\nERROR: Two infiles need to be specified for defbp, a dx and a ligand file\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
+	if (infile.substr( infile.length() - 4 ) == ".pdb" ) {
+		cerr << "\nERROR: Dx file expected in i, .pdb file given instead\n"
+		<< "For help run ./gistpp -h\n\n";
+		exit(0);
+	}
+	if (infile2.substr( infile.length() - 3 ) == ".dx" ) {
+		cerr << "\nERROR: Ligand file expected in i2, .dx file given instead\n"
+		<< "For help run ./gistpp -h\n\n";
+		exit(0);
+	}
         if (options.size() == 0) {
-            cerr << "\nNeed to specify desired distance around heavy atoms with cutoff1 option\n"
+            cerr << "\nERROR: Need to specify desired distance around heavy atoms with cutoff1 option\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -528,14 +538,13 @@ int main (int argc, char** argv) {
             if (!strcmp(options[j].c_str(), "const")) {test1 = true; break;}
         }
         if (test1 == false) {
-            cerr << "\nNeed to specify desired distance around heavy atoms with const option\n"
+            cerr << "\nERROR: Need to specify desired distance around heavy atoms with const option\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
 
 
         cout << "Binding pocket to be defined using heavy atoms in: " << infile2 << " will be applied to: " << infile << " with a distance of: " << val1 << " and written to: " << outfile << endl;
-        cout << "The ligand structure file is expected in i2 NOT in i!!\n";
         lig L;
         L.readLF(infile2);
         dx ONE;
@@ -548,12 +557,12 @@ int main (int argc, char** argv) {
         //distance to be specified by const
         bool test1 = false; //cutoff1
         if (infile.empty() || infile2.empty()) {
-            cerr << "\nTwo infiles need to be specified for defbp, a dx and a ligand file\n"
+            cerr << "\nERROR: Two infiles need to be specified for defbp, a dx and a ligand file\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
         if (options.size() == 0) {
-            cerr << "\nNeed to specify desired distance around heavy atoms with cutoff1 option\n"
+            cerr << "\nERROR: Need to specify desired distance around heavy atoms with cutoff1 option\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -561,7 +570,7 @@ int main (int argc, char** argv) {
             if (!strcmp(options[j].c_str(), "const")) {test1 = true; break;}
         }
         if (test1 == false) {
-            cerr << "\nNeed to specify desired distance around heavy atoms with const option\n"
+            cerr << "\nERROR: Need to specify desired distance around heavy atoms with const option\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -579,7 +588,7 @@ int main (int argc, char** argv) {
     else if (!strcmp(operation.c_str(), "popstat")) {
         //do pop
         if (infile.empty()) {
-            cerr << "\nTwo infiles need to be specified for popstat\n"
+            cerr << "\nERROR: Two infiles need to be specified for popstat\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -592,7 +601,7 @@ int main (int argc, char** argv) {
     else if (!strcmp(operation.c_str(), "printpdb")) {
         //do print pdb
         if (infile.empty()) {
-            cerr << "\nAn infile must be specified for printpdb\n"
+            cerr << "\nERROR: An infile must be specified for printpdb\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -606,17 +615,17 @@ int main (int argc, char** argv) {
     else if (!strcmp(operation.c_str(), "makedx")) {
         bool test1 = false; //cutoff1
         if (infile.empty()) {
-            cerr << "\nThe gist text file must be specified as -i for makedx\n"
+            cerr << "\nERROR: The gist text file must be specified as -i for makedx\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
         if (infile2.empty()) {
-            cerr << "\nA dx file from the same system must be entered in -i2 for makedx\n"
+            cerr << "\nERROR: A dx file from the same system must be entered in -i2 for makedx\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
         if (options.size() == 0) {
-            cerr << "\nNeed to specify desired column to be printed as dx file, with -opt const ##\n"
+            cerr << "\nERROR: Need to specify desired column to be printed as dx file, with -opt const ##\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -624,7 +633,7 @@ int main (int argc, char** argv) {
             if (!strcmp(options[j].c_str(), "const")) {test1 = true; break;}
         }
         if (test1 == false) {
-            cerr << "\nNeed to specify desired column to be printed as dx file, with -opt const ##\n"
+            cerr << "\nERROR: Need to specify desired column to be printed as dx file, with -opt const ##\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -642,12 +651,12 @@ int main (int argc, char** argv) {
     else if (!strcmp(operation.c_str(), "vdw")) {
         bool test1 = false; //cutoff1
         if (infile.empty()) {
-            cerr << "\nThe group dx file for a desired vdw volume analysis must be specified with -i for vdw\n"
+            cerr << "\nERROR: The group dx file for a desired vdw volume analysis must be specified with -i for vdw\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
         if (options.size() == 0) {
-            cerr << "\nNeed to specify the vdw volume desired (1.2 for water oxygen), with -opt const ##\n"
+            cerr << "\nERROR: Need to specify the vdw volume desired (1.2 for water oxygen), with -opt const ##\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -655,7 +664,7 @@ int main (int argc, char** argv) {
             if (!strcmp(options[j].c_str(), "const")) {test1 = true; break;}
         }
         if (test1 == false) {
-            cerr << "\nNeed to specify the vdw volume desired (1.2 for water oxygen), with -opt const ##\n"
+            cerr << "\nERROR: Need to specify the vdw volume desired (1.2 for water oxygen), with -opt const ##\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -667,7 +676,7 @@ int main (int argc, char** argv) {
     }
     else if (!strcmp(operation.c_str(), "cat")) {
         if (infile.empty() || infile2.empty()) {
-            cerr << "\nThe function cat attempts to combine two .dx outputs, therefore input files must be declared with -i and -i2\n"
+            cerr << "\nERROR: The function cat attempts to combine two .dx outputs, therefore input files must be declared with -i and -i2\n"
                     << "For help run ./gistpp -h\n\n";
             exit(0);
         }
@@ -679,7 +688,7 @@ int main (int argc, char** argv) {
         ONE.writeDx(outfile);
     }
     else {
-        cerr << "\nNo operation specified to be run\n"
+        cerr << "\nERROR: No operation specified to be run\n"
         << "For help run ./gistpp -h\n\n";
         exit (0);
     }
