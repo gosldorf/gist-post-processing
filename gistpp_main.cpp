@@ -211,7 +211,7 @@ int main (int argc, char** argv) {
     }
 	else if (!strcmp(operation.c_str(), "printcol")) {
 		if (infile.empty()) {
-			cerr <<"\nERROR: An infile must be specified to print a column\n"
+			cerr <<"\nERROR: An infile must be specified with flag -i to print a column\n"
 			<< "For help run gistpp -h\n\n";
 			exit(0);
 		}
@@ -233,12 +233,12 @@ int main (int argc, char** argv) {
         //double c2 = 0.0; //storage for cutoff value cutoff2
         char flg; //storage for gt or lt flag
         if (infile.empty()) {
-            cerr << "\nERROR: An infile must be specified in order to run contour\n"
+            cerr << "\nERROR: An infile must be specified with flag -i in order to run contour\n"
             << "For help run ./gistpp -h\n\n";
             exit(0);
         }
         if (infile2.empty()) {
-            cerr << "\nERROR: An infile 2 must be specified in order to run contour\n"
+            cerr << "\nERROR: An infile 2 must be specified with flag -i2 in order to run contour\n"
             << "For help run ./gistpp -h\n\n";
             exit(0);
         }
@@ -283,7 +283,7 @@ int main (int argc, char** argv) {
             exit(0);
         }
         if (options.size() == 0) {
-            cerr << "\nERROR: Must specify cutoff1 and gt1/lt1 for filter1\n"
+            cerr << "\nERROR: Must specify cutoff1 and gt1/lt1 with -opt cutoff1 and -opt gt1/lt1 for filter1\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -324,7 +324,7 @@ int main (int argc, char** argv) {
             exit (0);
         }
         if (options.size() == 0) {
-            cerr << "\nERROR: Must specify cutoff1, cutoff2, gt1/lt1, gt2/lt2 to run filter2\n"
+            cerr << "\nERROR: Must specify cutoff1, cutoff2, gt1/lt1, gt2/lt2, each with the flag -opt to run filter2\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -373,7 +373,7 @@ int main (int argc, char** argv) {
     else if (!strcmp(operation.c_str(), "sum")) {
         //do sum
         if (infile.empty()) {
-            cerr << "\nERROR: An infile must be specified in order to run sum\n"
+            cerr << "\nERROR: An infile must be specified with flag -i in order to run sum\n"
             << "For help run ./gistpp -h\n\n";
             exit(0);
         }
@@ -406,7 +406,7 @@ int main (int argc, char** argv) {
     else if (!strcmp(operation.c_str(), "sub")) {
         //do sub
         if (infile.empty() || infile2.empty()) {
-            cerr << "\nERROR: Two infiles need to be specified for sub\n"
+            cerr << "\nERROR: Two infiles need to be specified with flag -i for sub\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -438,7 +438,7 @@ int main (int argc, char** argv) {
     else if (!strcmp(operation.c_str(), "mult")) {
         //do mult
         if (infile.empty() || infile2.empty()) {
-            cerr << "\nERROR: Two infiles need to be specified for mult\n"
+            cerr << "\nERROR: Two infiles need to be specified with flags -i and -i2 for mult\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -456,12 +456,12 @@ int main (int argc, char** argv) {
         bool test1 = false; //const
 
         if (infile.empty()) {
-            cerr << "\nERROR: An infile needs to be specified for addconst\n"
+            cerr << "\nERROR: An infile needs to be specified with flag -i for addconst\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
         if (options.size() == 0) {
-            cerr << "\nERROR: Need to specify constant to add by:\n\n"
+            cerr << "\nERROR: Need to specify constant to add by with flag -opt const:\n\n"
             << "-opt const ##\n\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
@@ -470,7 +470,7 @@ int main (int argc, char** argv) {
             if (!strcmp(options[j].c_str(), "const" )) {test1 = true; break;}
         }
         if (test1 == false) {
-            cerr << "\nERROR: Need to specify constant to add by\n\n"
+            cerr << "\nERROR: Need to specify constant to add by with flag -opt const\n\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -486,12 +486,12 @@ int main (int argc, char** argv) {
         bool test1 = false; //const
 
         if (infile.empty()) {
-            cerr << "\nERROR: An infile needs to be specified for multconst\n"
+            cerr << "\nERROR: An infile needs to be specified with flag -i for multconst\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
         if (options.size() == 0) {
-            cerr << "\nERROR: Need to specify constant to mult by\n\n"
+            cerr << "\nERROR: Need to specify constant to mult by with -opt const\n\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
