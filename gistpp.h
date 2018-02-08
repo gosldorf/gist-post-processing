@@ -47,6 +47,7 @@ struct dx {
     void printcol(std::string outfile);
     dx cat(dx N); //concatenate dx files self and N to create a new dx file.
     void citation();
+    dx zeros();
 
 };
 

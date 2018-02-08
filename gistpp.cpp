@@ -1391,6 +1391,20 @@ dx dx::cat(dx N) {
 
 }
 
+dx dx::zeros() {
+	dx zero;
+	zero.totalpoints = totalpoints;
+	for (int i = 0; i < 3; i++ ) {
+		zero.count[i] = count[i];
+		zero.delta[i] = delta[i];
+		zero.origin[i] = origin[i];
+	}
+	for (int i = 0; i < totalpoints; i++) {
+		zero.data.push_back(0.0);
+	}
+	return zero;
+}
+
 void dx::citation() {
 	cout << "***********************************************************************************************************************************" << endl;
 	cout << "***********************************************************************************************************************************" << endl;

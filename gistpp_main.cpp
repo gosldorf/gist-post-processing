@@ -557,12 +557,12 @@ int main (int argc, char** argv) {
         //distance to be specified by const
         bool test1 = false; //cutoff1
         if (infile.empty() || infile2.empty()) {
-            cerr << "\nERROR: Two infiles need to be specified for defbp, a dx and a ligand file\n"
+            cerr << "\nERROR: Two infiles need to be specified for heavi, a dx map specified with -i, and a ligand file with -i2\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
         if (options.size() == 0) {
-            cerr << "\nERROR: Need to specify desired distance around heavy atoms with cutoff1 option\n"
+            cerr << "\nERROR: Need to specify desired distance around heavy atoms with const option using flag -opt const\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -686,6 +686,17 @@ int main (int argc, char** argv) {
         TWO.readDx(infile2);
         ONE.cat(TWO);
         ONE.writeDx(outfile);
+    }
+    else if (!strcmp(operation.c_str(), "zero")) {
+        if (infile.empty()) {
+        	cerr << "\nERROR: The function zero write a .dx map containing only 0.0's and requires and infile specified with the flag -i\n"
+			<< "For help run ./gistpp -h\n\n";
+		exit(0);
+	}
+	dx ONE;
+	ONE.readDx(infile);
+	dx TWO = ONE.zeros();
+	TWO.writeDx(outfile);
     }
     else {
         cerr << "\nERROR: No operation specified to be run\n"
