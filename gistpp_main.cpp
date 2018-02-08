@@ -520,17 +520,17 @@ int main (int argc, char** argv) {
             exit (0);
         }
 	if (infile.substr( infile.length() - 4 ) == ".pdb" ) {
-		cerr << "\nERROR: Dx file expected in i, .pdb file given instead\n"
+		cerr << "\nERROR: Dx file expected to be defined by flag -i, .pdb file given instead\n"
 		<< "For help run ./gistpp -h\n\n";
 		exit(0);
 	}
 	if (infile2.substr( infile.length() - 3 ) == ".dx" ) {
-		cerr << "\nERROR: Ligand file expected in i2, .dx file given instead\n"
+		cerr << "\nERROR: Ligand file expected to be defined by flag -i2, .dx file given instead\n"
 		<< "For help run ./gistpp -h\n\n";
 		exit(0);
 	}
         if (options.size() == 0) {
-            cerr << "\nERROR: Need to specify desired distance around heavy atoms with cutoff1 option\n"
+            cerr << "\nERROR: Need to specify desired distance around heavy atoms with const option with the flag -opt const\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
@@ -538,7 +538,7 @@ int main (int argc, char** argv) {
             if (!strcmp(options[j].c_str(), "const")) {test1 = true; break;}
         }
         if (test1 == false) {
-            cerr << "\nERROR: Need to specify desired distance around heavy atoms with const option\n"
+            cerr << "\nERROR: Need to specify desired distance around heavy atoms with const option with the flag -otp const\n"
             << "For help run ./gistpp -h\n\n";
             exit (0);
         }
